@@ -54,6 +54,10 @@ func (t *Timestamp) SetBSON(raw bson.Raw) error {
 	return nil
 }
 
+func (t *Timestamp) IsZeroTimestamp() bool {
+	return t.GetTime().IsZero()
+}
+
 func (t *Timestamp) String() string {
 	return time.Time(*t).String()
 }
