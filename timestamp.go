@@ -1,9 +1,10 @@
 package timestamp
 
 import (
-	"gopkg.in/mgo.v2/bson"
 	"errors"
 	"time"
+
+	"gopkg.in/mgo.v2/bson"
 )
 
 type Timestamp time.Time
@@ -58,8 +59,11 @@ func (t *Timestamp) IsZeroTimestamp() bool {
 	return t.GetTime().IsZero()
 }
 
-func (t *Timestamp) String() string {
-	return time.Time(*t).String()
+func (t *Timestamp) Format(layout string) string {
+	return time.Time(*t).Format(layout)
+}
+func (t Timestamp) String() string {
+	return t.Format(time.RFC3339)
 }
 
 func (t *Timestamp) GetTime() time.Time {
